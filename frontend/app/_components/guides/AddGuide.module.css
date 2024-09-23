@@ -1,0 +1,10 @@
+.addGuide {
+  display: flex;
+  justify-content: space-between;
+}
+
+.addGuideInputElements {
+  display: flex;
+  gap: var(--unit-3);
+  align-items: center;
+}

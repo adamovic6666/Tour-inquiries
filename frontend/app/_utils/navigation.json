@@ -1,0 +1,12 @@
+{
+  "navigation": [
+    {
+      "name": "Vodici",
+      "url": "/guides"
+    },
+    {
+      "name": "Destinacije i polasci",
+      "url": "/destinations"
+    }
+  ]
+}

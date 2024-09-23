@@ -6,12 +6,14 @@ export interface ApiGuideGuide extends Struct.CollectionTypeSchema {
     singularName: 'guide';
     pluralName: 'guides';
     displayName: 'Guide';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Name: Schema.Attribute.String;
+    firstName: Schema.Attribute.String;
+    lastName: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

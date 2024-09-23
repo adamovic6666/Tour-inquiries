@@ -1,0 +1,15 @@
+.navLink {
+  text-decoration: none;
+  transition: ease 0.3s;
+  color: var(--header-text-color);
+  opacity: 0.7;
+}
+
+.navLink:hover {
+  opacity: 1;
+}
+
+.navLinkActive {
+  font-weight: 500;
+  color: var(--header-text-color);
+}
