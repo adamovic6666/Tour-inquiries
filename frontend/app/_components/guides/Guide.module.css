@@ -1,0 +1,5 @@
+.guideActions {
+  display: flex;
+  gap: var(--unit-1-5);
+  align-items: center;
+}

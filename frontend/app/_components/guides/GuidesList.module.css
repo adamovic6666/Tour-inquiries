@@ -19,8 +19,6 @@
   font-weight: 500;
 }
 
-.guideActions {
-  display: flex;
-  gap: var(--unit-1-5);
-  align-items: center;
+.guideListEmpty {
+  margin-bottom: var(--unit-3);
 }

@@ -1,6 +1,20 @@
-const DeletIcon = () => {
+"use client";
+
+const DeleteIcon = ({
+  onClick,
+  itemId,
+}: {
+  onClick: (id: string) => void;
+  itemId: string;
+}) => {
   return (
-    <svg width="16px" height="16px" viewBox="0 0 16 15" version="1.1">
+    <svg
+      onClick={() => onClick(itemId)}
+      width="16px"
+      height="16px"
+      viewBox="0 0 16 15"
+      version="1.1"
+    >
       <g id="surface1" transform="translate(8, 9) translate(-8, -7.5)">
         <path
           fill="#7c7c7c"
@@ -10,4 +24,5 @@ const DeletIcon = () => {
     </svg>
   );
 };
-export default DeletIcon;
+
+export default DeleteIcon;

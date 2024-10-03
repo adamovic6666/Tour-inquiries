@@ -1,6 +1,6 @@
 import React from "react";
 
-const EditIcon = () => {
+const EditSVG = () => {
   return (
     <svg width="16px" height="16px" viewBox="0 0 16 15" version="1.1">
       <g id="surface1">
@@ -13,4 +13,4 @@ const EditIcon = () => {
   );
 };
 
-export default EditIcon;
+export default EditSVG;

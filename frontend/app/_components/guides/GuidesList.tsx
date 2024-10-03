@@ -1,26 +1,47 @@
-import { Guide } from "@/app/_types";
+"use client";
+import { Guide, GuidesListProps } from "@/app/_types";
 import classes from "./GuidesList.module.css";
-import DeletIcon from "../svgs/DeletIcon";
-import EditIcon from "../svgs/EditIcon";
-import AddGuide from "./AddGuide";
+import AddNewGuide from "./AddNewGuide";
+import DeleteGuide from "./DeleteGuide";
+import { useState } from "react";
+import { TEXT } from "@/app/_utils";
+import GuideDetails from "./GuideDetails";
 
-const GuidesList = ({ guides }: { guides: Guide[] }) => {
+const GuidesList = ({ guides }: GuidesListProps) => {
+  const [showModal, setShowModal] = useState(false);
+  const [guideToDelete, setGuideToDelete] = useState<Guide | null>(null);
+
   return (
     <>
-      <ul className={classes.guideList}>
-        {guides.map(({ id, firstName, lastName }: Guide) => (
-          <li key={id}>
-            <span className={classes.guideDetails}>
-              {firstName} {lastName}
-            </span>
-            <span className={classes.guideActions}>
-              <DeletIcon />
-              <EditIcon />
-            </span>
-          </li>
-        ))}
-      </ul>
-      <AddGuide />
+      {guides.length > 0 ? (
+        <ul className={classes.guideList}>
+          {guides.map((guide: Guide) => (
+            <GuideDetails
+              key={guide.id}
+              {...guide}
+              onClick={(id: string) => {
+                setGuideToDelete(
+                  guides.find(({ id: guideId }) => guideId === id) || null
+                );
+                setShowModal(true);
+              }}
+            />
+          ))}
+        </ul>
+      ) : (
+        <p className={classes.guideListEmpty}>{TEXT.NO_GUIDES_FOUND}</p>
+      )}
+      {/* GUIDE ADD */}
+      <AddNewGuide />
+      {/* GUIDE DELETION */}
+      <DeleteGuide
+        showModal={showModal}
+        guideToDelete={guideToDelete}
+        onCancel={() => {
+          setShowModal(false);
+          setGuideToDelete(null);
+        }}
+      />
     </>
   );
 };

@@ -23,6 +23,7 @@ export default function RootLayout({
       <body className={`${inter.className}`}>
         <Header />
         <main>{children}</main>
+        <div id="portal"></div>
       </body>
     </html>
   );
