@@ -4,11 +4,10 @@ export const API = {
 };
 
 export const ACTIONS = {
-  OK: "OK",
-  CANCEL: "CANCEL",
+  OK: "U redu",
 };
 
 export const TEXT = {
-  DELETE_GUIDE: `Da li zaista zelite da obrisete vodica:`,
+  DELETE_GUIDE_QUESTION: `Da li zaista zelite da obrisete vodica?`,
   NO_GUIDES_FOUND: `Lista vodica je trenutno prazna`,
 };

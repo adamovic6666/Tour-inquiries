@@ -9,7 +9,7 @@ import GuideDetails from "./GuideDetails";
 
 const GuidesList = ({ guides }: GuidesListProps) => {
   const [showModal, setShowModal] = useState(false);
-  const [guideToDelete, setGuideToDelete] = useState<Guide | null>(null);
+  const [guideToDeleteId, setGuideToDeleteId] = useState<string | null>(null);
 
   return (
     <>
@@ -20,8 +20,9 @@ const GuidesList = ({ guides }: GuidesListProps) => {
               key={guide.id}
               {...guide}
               onClick={(id: string) => {
-                setGuideToDelete(
-                  guides.find(({ id: guideId }) => guideId === id) || null
+                setGuideToDeleteId(
+                  guides.find(({ id: guideId }) => guideId === id)
+                    ?.documentId || null
                 );
                 setShowModal(true);
               }}
@@ -36,11 +37,8 @@ const GuidesList = ({ guides }: GuidesListProps) => {
       {/* GUIDE DELETION */}
       <DeleteGuide
         showModal={showModal}
-        guideToDelete={guideToDelete}
-        onCancel={() => {
-          setShowModal(false);
-          setGuideToDelete(null);
-        }}
+        guideToDeleteId={guideToDeleteId}
+        onCancel={() => setShowModal(false)}
       />
     </>
   );

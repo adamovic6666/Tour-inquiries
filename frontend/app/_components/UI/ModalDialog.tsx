@@ -1,48 +1,59 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
-import classes from "./ModalDialog.module.css";
+import { useEffect, useRef } from "react";
 import { ACTIONS } from "@/app/_utils";
 import { ModalDialogProps } from "@/app/_types";
+import CloseIcon from "../svgs/CloseIcon";
+import Button from "./Button";
+import classes from "./ModalDialog.module.css";
 
-const ModalDialog = ({ children, onOk, onCancel }: ModalDialogProps) => {
-  const [mounted, setMounted] = useState(false);
+const ModalDialog = ({
+  children,
+  onOk,
+  onCancel,
+  showModal,
+}: ModalDialogProps) => {
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
-  useEffect(() => setMounted(true), []);
+  // show modal on showModal prop change
+  useEffect(() => {
+    if (dialogRef.current) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      showModal ? dialogRef.current.showModal() : dialogRef.current.close();
+    }
+  }, [showModal]);
 
+  // on close modal
   const onCloseModalHandler = () => {
-    setMounted(false);
+    if (dialogRef.current) dialogRef.current.close();
     onCancel();
   };
 
-  return mounted
-    ? createPortal(
-        <dialog className={classes.modalDialog} onClick={onCloseModalHandler}>
-          <div onClick={(event) => event.stopPropagation()}>
-            {children}
-            <div className={classes.modalActions}>
-              <button
-                className={classes.modalButtonCancel}
-                onClick={onCloseModalHandler}
-              >
-                {ACTIONS.CANCEL}
-              </button>
-              <button
-                className={classes.modalButtonOk}
-                onClick={() => {
-                  onCloseModalHandler();
-                  onOk();
-                }}
-              >
-                {ACTIONS.OK}
-              </button>
-            </div>
-          </div>
-        </dialog>,
-        document?.getElementById("portal") as HTMLElement
-      )
-    : null;
+  // on click outside of dialog
+  const onDialogClick = (event: React.MouseEvent<HTMLDialogElement>) => {
+    if (event.target === dialogRef.current) onCloseModalHandler();
+  };
+
+  // on click on OK button
+  const handleOkClick = () => {
+    onCloseModalHandler();
+    onOk();
+  };
+
+  return (
+    <dialog
+      ref={dialogRef}
+      onCancel={onCloseModalHandler}
+      className={classes.modalDialog}
+      onClick={onDialogClick}
+    >
+      <div>
+        <CloseIcon onClick={onCloseModalHandler} />
+        <h4>{children}</h4>
+        <Button onClick={handleOkClick}>{ACTIONS.OK}</Button>
+      </div>
+    </dialog>
+  );
 };
 
 export default ModalDialog;

@@ -1,3 +1,5 @@
+export type ReactChildNode = React.ReactNode;
+
 export interface Navigation {
   name: string;
   url: string;
@@ -9,24 +11,25 @@ export interface GuidesListProps {
 
 export interface ModalDialogProps {
   onOk: () => void;
-  children: React.ReactNode;
+  children: ReactChildNode;
   onCancel: () => void;
+  showModal: boolean;
 }
 
 export interface GuideDeletionProps {
-  guideToDelete: Guide | null;
   showModal: boolean;
   onCancel: () => void;
+  guideToDeleteId: string | null;
 }
 
 export interface NavLinkProps {
   url: string;
-  children: React.ReactNode;
+  children: ReactChildNode;
 }
 
 export interface ButtonProps {
   onClick: () => void;
-  children: React.ReactNode;
+  children: ReactChildNode;
 }
 
 export interface Guide {

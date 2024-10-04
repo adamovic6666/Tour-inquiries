@@ -4,24 +4,24 @@ import ModalDialog from "../UI/ModalDialog";
 import { GuideDeletionProps } from "@/app/_types";
 import { TEXT } from "@/app/_utils";
 import { deleteGuideAction } from "@/app/_actions/delete-data";
+import Portal from "../UI/Portal";
 
 const DeleteGuide = ({
-  guideToDelete,
   showModal,
   onCancel,
+  guideToDeleteId,
 }: GuideDeletionProps) => {
   return (
     showModal && (
-      <ModalDialog
-        onOk={() =>
-          guideToDelete && deleteGuideAction(guideToDelete.documentId)
-        }
-        onCancel={onCancel}
-      >
-        {TEXT.DELETE_GUIDE}
-        <br />
-        {guideToDelete?.firstName} {guideToDelete?.lastName}?
-      </ModalDialog>
+      <Portal>
+        <ModalDialog
+          showModal={showModal}
+          onOk={() => guideToDeleteId && deleteGuideAction(guideToDeleteId)}
+          onCancel={onCancel}
+        >
+          {TEXT.DELETE_GUIDE_QUESTION}
+        </ModalDialog>
+      </Portal>
     )
   );
 };
