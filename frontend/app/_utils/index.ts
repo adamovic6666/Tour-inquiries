@@ -1,13 +1,15 @@
-export const API = {
-  GUIDES: "/api/guides",
-  DELETE_GUIDE: (id: string) => `/api/guides/${id}`,
-};
+import { createToast } from "../_components/UI/Toast";
+import { ToastType } from "../_types";
 
-export const ACTIONS = {
-  OK: "U redu",
-};
-
-export const TEXT = {
-  DELETE_GUIDE_QUESTION: `Da li zaista zelite da obrisete vodica?`,
-  NO_GUIDES_FOUND: `Lista vodica je trenutno prazna`,
+export const withErrorHandling = (asyncFn: (id: string) => Promise<void>) => {
+  return async (id: string) => {
+    try {
+      await asyncFn(id);
+    } catch (e) {
+      createToast({
+        message: (e as Error)?.message ?? "An error occurred",
+        type: ToastType.ERROR,
+      });
+    }
+  };
 };

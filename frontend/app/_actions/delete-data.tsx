@@ -1,19 +1,16 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { API } from "../_utils";
+import { API, TEXT } from "../_constants";
+import { dataDeletion } from "../_utils/fetchers";
+import { ContentType } from "../_types";
 
 export const deleteGuideAction = async (id: string) => {
-  const response = await fetch(
-    `${process.env.STRAPI_BASE_URL}${API.DELETE_GUIDE(id)}`,
-    {
-      method: "DELETE",
-    }
+  const data = dataDeletion(
+    API.DELETE_GUIDE(id),
+    TEXT.GUIDE_DELETED,
+    ContentType.GUIDE
   );
-
-  if (!response.ok) {
-    throw new Error("Failed to delete guide");
-  }
-
   revalidatePath("/guides");
+  return data;
 };

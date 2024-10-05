@@ -49,3 +49,17 @@ export enum QUERY_PARAMS {
   GUIDE_TO_DELETE_ID = "guideToDeleteId",
   SHOW_MODAL = "showModal",
 }
+
+export enum ToastType {
+  ERROR = "error",
+  SUCCESS = "success",
+}
+
+export interface ToastProps {
+  message: string;
+  type: ToastType.ERROR | ToastType.SUCCESS;
+}
+
+export enum ContentType {
+  GUIDE = "Vodič",
+}

@@ -4,7 +4,7 @@ import classes from "./GuidesList.module.css";
 import AddNewGuide from "./AddNewGuide";
 import DeleteGuide from "./DeleteGuide";
 import { useState } from "react";
-import { TEXT } from "@/app/_utils";
+import { TEXT } from "@/app/_constants";
 import GuideDetails from "./GuideDetails";
 
 const GuidesList = ({ guides }: GuidesListProps) => {

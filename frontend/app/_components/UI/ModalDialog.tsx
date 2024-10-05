@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { ACTIONS } from "@/app/_utils";
+import { ACTIONS } from "@/app/_constants/index";
 import { ModalDialogProps } from "@/app/_types";
 import CloseIcon from "../svgs/CloseIcon";
 import Button from "./Button";

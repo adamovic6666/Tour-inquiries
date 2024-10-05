@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/app/_components/header/Header";
+import Toast from "./_components/UI/Toast";
 
 // import inter font from google fonts
 const inter = Inter({
@@ -23,6 +24,7 @@ export default function RootLayout({
       <body className={`${inter.className}`}>
         <Header />
         <main>{children}</main>
+        <Toast />
         <div id="portal"></div>
       </body>
     </html>

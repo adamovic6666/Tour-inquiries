@@ -1,5 +1,5 @@
 import GuidesList from "@/app/_components/guides/GuidesList";
-import { API } from "@/app/_utils/index";
+import { API } from "@/app/_constants";
 
 const GuidesPage = async () => {
   // GET ALL GUIDES
