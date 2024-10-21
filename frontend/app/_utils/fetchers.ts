@@ -1,13 +1,18 @@
-import { ToastType } from "../_types";
+import { RequestBody, ToastType } from "../_types";
 
 const requestHandler = async (
   endpoint: string,
   method: string,
   message: string,
-  dataType: string
+  dataType: string,
+  body?: RequestBody
 ) => {
   const response = await fetch(`${process.env.STRAPI_BASE_URL}${endpoint}`, {
     method,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: body ? JSON.stringify(body) : undefined,
   });
 
   if (!response.ok) {
@@ -24,7 +29,7 @@ const requestHandler = async (
   };
 };
 
-export const dataDeletion = (
+export const dataDatabaseDeletion = (
   endpoint: string,
   message: string,
   dataType: string
@@ -32,10 +37,11 @@ export const dataDeletion = (
   return requestHandler(endpoint, "DELETE", message, dataType);
 };
 
-export const dataAddition = (
+export const dataDatabaseAddition = (
   endpoint: string,
   message: string,
-  dataType: string
+  dataType: string,
+  body: RequestBody
 ) => {
-  return requestHandler(endpoint, "POST", message, dataType);
+  return requestHandler(endpoint, "POST", message, dataType, body);
 };

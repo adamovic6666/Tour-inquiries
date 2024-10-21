@@ -15,9 +15,13 @@ const Toast = () => {
       const newToasts = [toast, ...toasts];
       setToasts(newToasts);
 
-      setTimeout(() => {
+      const id = setTimeout(() => {
         setToasts([]);
-      }, 2500);
+      }, 3500);
+
+      return () => {
+        clearTimeout(id);
+      };
     },
     [toasts]
   );
@@ -25,7 +29,7 @@ const Toast = () => {
   const ToastItem = useCallback(
     ({ message, type }: ToastProps) => (
       <div
-        className={classes.toast}
+        className={classes.ToastItem}
         style={{
           background: type === "error" ? "#C32127" : "#219653",
         }}
@@ -37,11 +41,11 @@ const Toast = () => {
   );
 
   return (
-    <>
+    <div className={classes.ToastWrapper}>
       {toasts.map((toast, i) => (
         <ToastItem key={`TOAST_ITEM_${toast}_${i}`} {...toast} />
       ))}
-    </>
+    </div>
   );
 };
 

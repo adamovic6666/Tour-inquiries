@@ -4,6 +4,11 @@
   gap: var(--unit);
 }
 
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
 .input input {
   width: 100%;
   border: 1px solid var(--input-border-color);
@@ -20,9 +25,24 @@
   border-bottom: 2px solid var(--input-border-color);
 }
 
+.input input::placeholder {
+  color: var(--placeholder-color);
+}
+
 .input label {
   font-size: 13px;
   font-weight: 600;
   color: var(--text-color);
   display: block;
+}
+
+.input span {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(var(--unit-1-5) * -1.5);
+  font-size: 12px;
+  color: var(--input-error-color);
+  text-align: center;
 }

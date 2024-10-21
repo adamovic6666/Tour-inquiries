@@ -1,3 +1,5 @@
+import { Control, FieldValues, UseFormRegister } from "react-hook-form";
+
 export type ReactChildNode = React.ReactNode;
 
 export interface Navigation {
@@ -28,8 +30,14 @@ export interface NavLinkProps {
 }
 
 export interface ButtonProps {
-  onClick: () => void;
+  onClick?: () => void;
   children: ReactChildNode;
+  isPending?: boolean;
+}
+
+export interface GuideFormFields {
+  firstName: string;
+  lastName: string;
 }
 
 export interface Guide {
@@ -62,4 +70,22 @@ export interface ToastProps {
 
 export enum ContentType {
   GUIDE = "Vodič",
+}
+
+export interface InputProps {
+  placeholder: string;
+  errorMessage?: string | null;
+  name: string;
+  defaultValue?: string;
+  errors: FieldValues;
+}
+
+export interface ActionState {
+  success?: boolean;
+  toast: ToastProps | null;
+  errors: string[] | null;
+}
+
+export interface RequestBody {
+  [key: string]: any;
 }

@@ -14,8 +14,8 @@ const DeleteGuide = ({
   guideToDeleteId,
 }: GuideDeletionProps) => {
   const deleteGuideHandler = withErrorHandling(async (id: string) => {
-    const { message, type } = await deleteGuideAction(id);
-    createToast({ message, type });
+    const toast = await deleteGuideAction(id);
+    createToast({ ...toast });
   });
 
   return (
